@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Rohit Reddy Yerva — Data Scientist & Full Stack Engineer</title>
+<meta name="description" content="Portfolio of Rohit Reddy Yerva — ML/Forecasting Engineer and Full Stack Developer based in Hyderabad." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF6EF;
+    --paper-deep:#F3ECE0;
+    --ink:#262220;
+    --ink-soft:#5C5650;
+    --blue:#2B5C7A;
+    --blue-deep:#1E4258;
+    --copper:#B5651D;
+    --copper-soft:#E7C9A9;
+    --line:#E2D9CB;
+    --max-w:1080px;
+    --radius:14px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{ background:var(--copper-soft); }
+
+  a{ color:var(--blue); text-decoration:none; }
+
+  .wrap{ max-width:var(--max-w); margin:0 auto; padding:0 28px; }
+
+  /* ---------- Skip link ---------- */
+  .skip-link{
+    position:absolute; left:-9999px; top:0;
+    background:var(--blue); color:#fff; padding:10px 16px; z-index:100;
+  }
+  .skip-link:focus{ left:12px; top:12px; border-radius:6px; }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,246,239,0.86);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px; max-width:var(--max-w); margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.25rem;
+    color:var(--ink); letter-spacing:-0.01em;
+  }
+  .logo span{ color:var(--copper); }
+  .nav-links{ display:flex; gap:28px; list-style:none; align-items:center; }
+  .nav-links a{
+    color:var(--ink-soft); font-weight:500; font-size:0.94rem;
+    transition:color .15s ease;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{ color:var(--blue); }
+  .nav-links a:focus-visible{ outline:2px solid var(--blue); outline-offset:4px; border-radius:3px; }
+  .nav-cta{
+    background:var(--blue); color:#fff !important; padding:9px 18px;
+    border-radius:8px; font-weight:600; font-size:0.92rem;
+    transition:background .15s ease;
+  }
+  .nav-cta:hover{ background:var(--blue-deep); }
+  .nav-toggle{ display:none; background:none; border:none; cursor:pointer; padding:6px; }
+  .nav-toggle svg{ width:24px; height:24px; stroke:var(--ink); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:84px 0 64px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid; grid-template-columns: 1.15fr 1fr; gap:48px; align-items:center;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--copper); font-weight:500;
+    display:flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:''; display:inline-block; width:28px; height:1px; background:var(--copper);
+  }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    font-weight:600; line-height:1.08; letter-spacing:-0.02em;
+    color:var(--ink); margin-bottom:20px;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--blue);
+    background:linear-gradient(180deg, transparent 62%, var(--copper-soft) 62%);
+  }
+  .hero p.lede{
+    font-size:1.08rem; color:var(--ink-soft); max-width:520px; margin-bottom:30px;
+  }
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 24px; border-radius:9px; font-weight:600; font-size:0.95rem;
+    transition: all .15s ease; border:1.5px solid transparent;
+  }
+  .btn-primary{ background:var(--blue); color:#fff; }
+  .btn-primary:hover{ background:var(--blue-deep); transform:translateY(-1px); }
+  .btn-secondary{ border-color:var(--ink); color:var(--ink); background:transparent; }
+  .btn-secondary:hover{ background:var(--ink); color:var(--paper); transform:translateY(-1px); }
+  .btn:focus-visible{ outline:2px solid var(--blue); outline-offset:3px; }
+
+  /* ---------- Hero visual: forecast chart ---------- */
+  .forecast-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px 22px 18px; box-shadow:0 14px 40px -20px rgba(43,92,122,0.35);
+  }
+  .forecast-card .fc-head{
+    display:flex; justify-content:space-between; align-items:baseline; margin-bottom:4px;
+  }
+  .forecast-card .fc-title{ font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--ink-soft); text-transform:uppercase; letter-spacing:0.08em; }
+  .forecast-card .fc-metric{ font-family:'Fraunces', serif; font-size:1.6rem; font-weight:600; color:var(--blue); }
+  .forecast-card .fc-sub{ font-size:0.78rem; color:var(--ink-soft); margin-bottom:10px; }
+  .fc-chart{ width:100%; height:auto; display:block; }
+  .fc-band{ fill:var(--copper-soft); opacity:0.45; }
+  .fc-actual{ fill:none; stroke:var(--ink); stroke-width:2; }
+  .fc-forecast{
+    fill:none; stroke:var(--blue); stroke-width:2.5; stroke-dasharray:0;
+    stroke-dasharray: 600; stroke-dashoffset:600;
+    animation: draw 1.8s ease forwards 0.4s;
+  }
+  @keyframes draw{ to{ stroke-dashoffset:0; } }
+  @media (prefers-reduced-motion: reduce){
+    .fc-forecast{ animation:none; stroke-dashoffset:0; }
+  }
+  .fc-legend{ display:flex; gap:18px; margin-top:8px; font-size:0.78rem; color:var(--ink-soft); }
+  .fc-legend span{ display:inline-flex; align-items:center; gap:6px; }
+  .fc-dot{ width:10px; height:3px; border-radius:2px; display:inline-block; }
+
+  /* ---------- Section shared ---------- */
+  section{ padding:88px 0; }
+  .section-head{ margin-bottom:48px; max-width:640px; }
+  .section-eyebrow{
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--blue); font-weight:500; margin-bottom:10px;
+  }
+  .section-head h2{
+    font-family:'Fraunces', serif; font-size:clamp(1.8rem, 3.4vw, 2.6rem);
+    font-weight:600; letter-spacing:-0.01em; color:var(--ink);
+  }
+  .section-head p{ color:var(--ink-soft); margin-top:12px; font-size:1.02rem; }
+
+  /* ---------- About ---------- */
+  .about{ background:var(--paper-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .about .wrap{ display:grid; grid-template-columns: 1fr 1fr; gap:56px; align-items:start; }
+  .about-text p{ color:var(--ink-soft); margin-bottom:16px; }
+  .about-text strong{ color:var(--ink); }
+  .stats{ display:grid; grid-template-columns: repeat(2,1fr); gap:20px; }
+  .stat{
+    background:var(--paper); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px;
+  }
+  .stat .num{ font-family:'Fraunces', serif; font-size:2.1rem; font-weight:600; color:var(--copper); line-height:1; }
+  .stat .label{ font-size:0.86rem; color:var(--ink-soft); margin-top:6px; }
+
+  /* ---------- Experience timeline ---------- */
+  .timeline{ position:relative; }
+  .timeline-item{
+    display:grid; grid-template-columns: 160px 1fr; gap:32px;
+    padding:28px 0; border-top:1px solid var(--line);
+  }
+  .timeline-item:first-child{ border-top:1px solid var(--line); }
+  .timeline-date{
+    font-family:'JetBrains Mono', monospace; font-size:0.82rem; color:var(--blue);
+    font-weight:500; padding-top:4px;
+  }
+  .timeline-content h3{
+    font-family:'Fraunces', serif; font-size:1.25rem; font-weight:600; margin-bottom:2px;
+  }
+  .timeline-content .role-loc{ font-size:0.9rem; color:var(--ink-soft); margin-bottom:12px; }
+  .timeline-content ul{ list-style:none; }
+  .timeline-content li{
+    color:var(--ink-soft); font-size:0.96rem; padding-left:18px; position:relative; margin-bottom:7px;
+  }
+  .timeline-content li::before{
+    content:'—'; position:absolute; left:0; color:var(--copper);
+  }
+  .tag-row{ display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
+  .tag{
+    font-family:'JetBrains Mono', monospace; font-size:0.74rem; color:var(--blue-deep);
+    background:#fff; border:1px solid var(--line); padding:4px 10px; border-radius:6px;
+  }
+
+  /* ---------- Projects ---------- */
+  .project-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:24px; }
+  .project-card{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px; display:flex; flex-direction:column; transition: transform .18s ease, box-shadow .18s ease;
+  }
+  .project-card:hover{ transform:translateY(-3px); box-shadow:0 16px 36px -24px rgba(38,34,32,0.35); }
+  .project-card .pc-icon{
+    width:42px; height:42px; border-radius:9px; display:flex; align-items:center; justify-content:center;
+    background:var(--paper-deep); margin-bottom:18px; color:var(--blue);
+  }
+  .project-card .pc-icon svg{ width:22px; height:22px; }
+  .project-card h3{ font-family:'Fraunces', serif; font-size:1.2rem; font-weight:600; margin-bottom:8px; }
+  .project-card p{ color:var(--ink-soft); font-size:0.95rem; flex-grow:1; }
+  .project-card .tag-row{ margin-top:18px; }
+  .project-card .pc-result{
+    font-family:'JetBrains Mono', monospace; font-size:0.82rem; color:var(--copper);
+    margin-top:14px; font-weight:500;
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap:20px; }
+  .skill-cat{
+    background:#fff; border:1px solid var(--line); border-radius:var(--radius); padding:22px;
+  }
+  .skill-cat h3{
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--blue); margin-bottom:14px; font-weight:600;
+  }
+  .skill-cat ul{ list-style:none; display:flex; flex-direction:column; gap:8px; }
+  .skill-cat li{ font-size:0.92rem; color:var(--ink); }
+
+  /* ---------- Achievements ---------- */
+  .achieve-row{ display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; }
+  .achieve-card{
+    border:1px dashed var(--line); border-radius:var(--radius); padding:24px; background:var(--paper-deep);
+  }
+  .achieve-card .ac-num{ font-family:'Fraunces', serif; font-size:1.6rem; color:var(--copper); font-weight:600; margin-bottom:8px; }
+  .achieve-card p{ color:var(--ink-soft); font-size:0.92rem; }
+
+  /* ---------- Contact ---------- */
+  .contact{
+    background:var(--blue); color:#FAF6EF;
+    border-radius:var(--radius);
+    padding:64px 48px; text-align:center; margin-bottom:40px;
+  }
+  .contact h2{ font-family:'Fraunces', serif; font-size:clamp(1.8rem,4vw,2.6rem); font-weight:600; margin-bottom:14px; }
+  .contact p{ color:#CFE0EA; max-width:520px; margin:0 auto 30px; }
+  .contact .hero-actions{ justify-content:center; }
+  .contact .btn-primary{ background:var(--copper); }
+  .contact .btn-primary:hover{ background:#9C541A; }
+  .contact .btn-secondary{ border-color:#fff; color:#fff; }
+  .contact .btn-secondary:hover{ background:#fff; color:var(--blue); }
+  .contact-links{ display:flex; justify-content:center; gap:24px; margin-top:28px; flex-wrap:wrap; }
+  .contact-links a{ color:#fff; font-weight:500; font-size:0.92rem; display:inline-flex; align-items:center; gap:6px; }
+  .contact-links a:hover{ color:var(--copper-soft); }
+
+  /* ---------- Footer ---------- */
+  footer{
+    border-top:1px solid var(--line); padding:32px 0; text-align:center;
+    color:var(--ink-soft); font-size:0.86rem;
+  }
+  footer a{ color:var(--ink-soft); }
+  footer a:hover{ color:var(--blue); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 880px){
+    .hero .wrap{ grid-template-columns:1fr; gap:40px; }
+    .about .wrap{ grid-template-columns:1fr; gap:36px; }
+    .project-grid{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns: repeat(2,1fr); }
+    .achieve-row{ grid-template-columns:1fr; }
+    .timeline-item{ grid-template-columns:1fr; gap:8px; }
+    .timeline-date{ padding-top:0; }
+  }
+  @media (max-width: 680px){
+    .nav-links{
+      position:absolute; top:100%; left:0; right:0; background:var(--paper);
+      flex-direction:column; align-items:flex-start; padding:20px 28px; gap:18px;
+      border-bottom:1px solid var(--line); display:none;
+    }
+    .nav-links.open{ display:flex; }
+    .nav-toggle{ display:block; }
+    .nav-cta{ width:100%; text-align:center; }
+    .skills-grid{ grid-template-columns:1fr; }
+    .contact{ padding:48px 24px; }
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header>
+  <nav>
+    <a href="#top" class="logo">Rohit<span>.</span>Yerva</a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" id="navToggle">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+      <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Data Scientist · ML Engineer · Full Stack</p>
+        <h1>I build models &amp; products that <em>predict, ship,</em> and scale.</h1>
+        <p class="lede">
+          Hi, I'm Rohit Reddy Yerva — a Hyderabad-based engineer turning demand and operations data into forecasts that teams actually act on, and shipping the full-stack apps that put them in front of users.
+        </p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Get in touch</a>
+          <a href="#projects" class="btn btn-secondary">View my work</a>
+        </div>
+      </div>
+      <div class="forecast-card" role="img" aria-label="Illustrative chart showing an actual demand line and a forecast line with a confidence band, representing forecasting work">
+        <div class="fc-head">
+          <span class="fc-title">Demand Forecast — Q3</span>
+          <span class="fc-metric">90%+</span>
+        </div>
+        <p class="fc-sub">Model accuracy maintained in production</p>
+        <svg class="fc-chart" viewBox="0 0 400 180" preserveAspectRatio="none" aria-hidden="true">
+          <polygon class="fc-band" points="180,90 220,70 260,60 300,55 340,52 380,50 380,130 340,128 300,124 260,118 220,112 180,108"/>
+          <polyline class="fc-actual" points="10,150 50,140 90,120 130,100 180,99"/>
+          <polyline class="fc-forecast" points="180,99 220,90 260,86 300,82 340,80 380,78"/>
+        </svg>
+        <div class="fc-legend">
+          <span><i class="fc-dot" style="background:var(--ink)"></i> Actuals</span>
+          <span><i class="fc-dot" style="background:var(--blue)"></i> Forecast</span>
+          <span><i class="fc-dot" style="background:var(--copper-soft)"></i> Confidence band</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="about-text">
+        <p class="section-eyebrow">About</p>
+        <h2 style="font-family:'Fraunces',serif; font-size:1.9rem; font-weight:600; margin-bottom:18px;">From forecasting models to full-stack screens</h2>
+        <p>
+          I'm currently a <strong>Data Scientist / Machine Learning Engineer at Datanitiv</strong>, where I design forecasting systems — using LightGBM, Neural Prophet, DeepAR, and Prophet + XGBoost hybrids — that run in production with <strong>90%+ accuracy</strong>.
+        </p>
+        <p>
+          What started as a model-building role expanded organically: I picked up <strong>.NET, MSSQL, and Angular from scratch</strong> to build the REST APIs, stored procedures, and UI screens that bring those models to end users — including authentication, new modules, and cross-team defect resolution.
+        </p>
+        <p>
+          Before that, I worked as a UI/UX designer on two startup teams, which is why I care as much about how a model's output looks and feels to a user as I do about its accuracy. I hold an <strong>AWS Cloud Practitioner certification</strong> and graduated in <strong>B.Tech CSE (AI &amp; ML)</strong> from the Institute of Aeronautical Engineering.
+        </p>
+      </div>
+      <div class="stats">
+        <div class="stat">
+          <div class="num">90%+</div>
+          <div class="label">Production model accuracy (LightGBM demand forecasting)</div>
+        </div>
+        <div class="stat">
+          <div class="num">95.3%</div>
+          <div class="label">Test accuracy — Alzheimer's &amp; brain tumour detection (EfficientNetB3)</div>
+        </div>
+        <div class="stat">
+          <div class="num">3</div>
+          <div class="label">Stacks worked across: ML/Python, .NET/MSSQL, Angular UI</div>
+        </div>
+        <div class="stat">
+          <div class="num">1300+</div>
+          <div class="label">Students reached via TEDx IARE &amp; Frost Hacks events organised</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Experience</p>
+        <h2>Where I've worked</h2>
+        <p>From UI/UX design in early-stage startups to leading end-to-end forecasting and full-stack delivery at Datanitiv.</p>
+      </div>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-date">Jul 2025 — Present</div>
+          <div class="timeline-content">
+            <h3>Data Scientist / Machine Learning Engineer</h3>
+            <div class="role-loc">Datanitiv · Hyderabad, Telangana (On-site)</div>
+            <ul>
+              <li>Optimised Neural Prophet &amp; DeepAR models for demand forecasting via hyperparameter tuning, and built a LightGBM model maintaining 90%+ accuracy.</li>
+              <li>Led end-to-end development of the AHT (Average Handle Time) forecasting project — research, model selection, microservices integration and deployment.</li>
+              <li>Built a Prophet + XGBoost hybrid model for the Shrinkage module, improving on a legacy SARIMAX approach.</li>
+              <li>Self-learned .NET, MSSQL and Angular to build REST APIs, stored procedures, authentication, and complete UI screens for the Action Centre.</li>
+              <li>Collaborated across UI, API, DB, QA and Product teams; improved logging and error handling across layers, and mentored teammates across ML, full stack and UI.</li>
+            </ul>
+            <div class="tag-row">
+              <span class="tag">LightGBM</span><span class="tag">Neural Prophet</span><span class="tag">DeepAR</span>
+              <span class="tag">XGBoost</span><span class="tag">.NET</span><span class="tag">MSSQL</span><span class="tag">Angular</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">May 2023 — Jul 2023</div>
+          <div class="timeline-content">
+            <h3>UI/UX Designer</h3>
+            <div class="role-loc">Echo – Day Jobs · Hyderabad (Remote)</div>
+            <ul>
+              <li>Designed a Figma prototype for a job-search mobile app used by 100+ users, with map-based job discovery and earnings tracking.</li>
+              <li>Built features including job postings, a nearby-jobs map, and an earnings account.</li>
+              <li>Collaborated cross-functionally in a fast-paced startup environment.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">Figma</span><span class="tag">Product Design</span></div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Jan 2023 — Nov 2023</div>
+          <div class="timeline-content">
+            <h3>UI/UX Designer</h3>
+            <div class="role-loc">Advantage Community · Hyderabad (Remote)</div>
+            <ul>
+              <li>Improved UI workflow for a design startup, resulting in clearer navigation paths and reduced task time.</li>
+              <li>Used Figma and other design resources for UI/UX development in a startup environment.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">Figma</span><span class="tag">UX</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" style="background:var(--paper-deep); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Projects</p>
+        <h2>Things I've built</h2>
+        <p>A mix of applied ML, web development, and infrastructure work from coursework, hackathons, and client projects.</p>
+      </div>
+      <div class="project-grid">
+
+        <div class="project-card">
+          <div class="pc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 2v10l7 7"/></svg>
+          </div>
+          <h3>Early Detection of Alzheimer's &amp; Brain Tumour</h3>
+          <p>Deep learning model built on EfficientNetB3, trained on brain MRI scans to support early detection of Alzheimer's disease and brain tumours.</p>
+          <div class="pc-result">95.3% test accuracy</div>
+          <div class="tag-row"><span class="tag">Python</span><span class="tag">EfficientNetB3</span><span class="tag">Deep Learning</span></div>
+        </div>
+
+        <div class="project-card">
+          <div class="pc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M9 9v9"/></svg>
+          </div>
+          <h3>Widespace Interiors</h3>
+          <p>Responsive web UI built for an interior design client, focused on streamlining layout and improving navigation clarity for visitors.</p>
+          <div class="pc-result">Client-facing responsive build</div>
+          <div class="tag-row"><span class="tag">HTML/CSS</span><span class="tag">Responsive UI</span></div>
+        </div>
+
+        <div class="project-card">
+          <div class="pc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>TEDx IARE, Hyderabad</h3>
+          <p>End-to-end ownership of the event's digital presence: UI design in Figma, front-end build in HTML/CSS, and deployment on AWS using EC2, S3 and ELB.</p>
+          <div class="pc-result">Live event for 800+ attendees</div>
+          <div class="tag-row"><span class="tag">Figma</span><span class="tag">AWS EC2/S3/ELB</span><span class="tag">HTML/CSS</span></div>
+        </div>
+
+        <div class="project-card">
+          <div class="pc-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <h3>JUSPAY Learnathon</h3>
+          <p>Deployed and monitored a containerised microservice application using Docker and Kubernetes, with Prometheus/Grafana monitoring and Envoy sidecar proxy routing.</p>
+          <div class="pc-result">Production-style microservice setup</div>
+          <div class="tag-row"><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Prometheus</span><span class="tag">Envoy</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Skills</p>
+        <h2>What I work with</h2>
+        <p>A blend of data science tooling, full-stack development, and the cloud/design fundamentals that tie it together.</p>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-cat">
+          <h3>Languages &amp; Data</h3>
+          <ul>
+            <li>Python</li>
+            <li>C# (.NET)</li>
+            <li>JavaScript</li>
+            <li>Java</li>
+            <li>MySQL / MSSQL</li>
+          </ul>
+        </div>
+        <div class="skill-cat">
+          <h3>ML &amp; Frameworks</h3>
+          <ul>
+            <li>LightGBM</li>
+            <li>Prophet / XGBoost</li>
+            <li>Neural Prophet, DeepAR</li>
+            <li>Angular</li>
+            <li>Microservices</li>
+            <li>Prompt Engineering</li>
+          </ul>
+        </div>
+        <div class="skill-cat">
+          <h3>Cloud &amp; DevOps</h3>
+          <ul>
+            <li>AWS (Certified Practitioner)</li>
+            <li>Azure &amp; Azure Service Bus</li>
+            <li>Docker</li>
+            <li>Linux / Windows</li>
+          </ul>
+        </div>
+        <div class="skill-cat">
+          <h3>Design &amp; Collaboration</h3>
+          <ul>
+            <li>Figma / Canva</li>
+            <li>UI/UX Design</li>
+            <li>Leadership &amp; Mentoring</li>
+            <li>Cross-team Communication</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Beyond the desk</p>
+        <h2>Achievements</h2>
+      </div>
+      <div class="achieve-row">
+        <div class="achieve-card">
+          <div class="ac-num">AWS</div>
+          <p>Certified AWS Cloud Practitioner.</p>
+        </div>
+        <div class="achieve-card">
+          <div class="ac-num">800+</div>
+          <p>Students attended TEDx IARE, an event I helped organise at Hyderabad.</p>
+        </div>
+        <div class="achieve-card">
+          <div class="ac-num">500+</div>
+          <p>Students attended the Major League Hacking Frost Hacks Hackathon, which I helped organise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <h2>Let's build something that works in production.</h2>
+        <p>Open to Data Science, ML Engineering, and Full Stack roles. If you're hiring or just want to chat about forecasting, Angular, or AI tooling — reach out.</p>
+        <div class="hero-actions">
+          <a href="mailto:work.rohityerva@gmail.com" class="btn btn-primary">Email me</a>
+          <a href="resume.pdf" target="_blank" rel="noopener" class="btn btn-secondary">Download Resume</a>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:work.rohityerva@gmail.com">work.rohityerva@gmail.com</a>
+          <a href="tel:+918008065001">+91 8008065001</a>
+          <a href="https://github.com/RohitReddyYerva01" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/rohit-reddy-yerva-308513245/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    &copy; 2026 Rohit Reddy Yerva. Built &amp; deployed for free with GitHub Pages.
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>
